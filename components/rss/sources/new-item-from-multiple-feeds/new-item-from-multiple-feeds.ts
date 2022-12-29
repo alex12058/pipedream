@@ -55,12 +55,10 @@ export default defineSource({
         feedItems = feedItems
           .map((item) => {
             // Extract the description and title from the event
-            const { title, description, categories } = item;
+            const { title, description } = item;
 
             // Use the compromise library to process the title, description and categories
-            const doc = nlp(
-              `${title}\n\n${description}\n\ntags: ${categories.join(", ")}.`
-            );
+            const doc = nlp(`${title}\n\n${description}`);
 
             // Add the matched keywords to the RSS feed item
             item.matched_keywords = this.keywords.filter((keyword) =>
