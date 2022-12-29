@@ -2476,6 +2476,7 @@ importers:
       '@types/node': ^17.0.36
       '@types/object-hash': ^2.2.1
       axios: ^0.27.2
+      compromise: ^14.8.1
       feedparser: ^2.2.10
       object-hash: ^3.0.0
       rss-parser: ^3.12.0
@@ -2484,6 +2485,7 @@ importers:
       '@pipedream/helpers': 1.3.12
       '@pipedream/platform': 1.2.0
       axios: 0.27.2
+      compromise: 14.8.1
       feedparser: 2.2.10
       object-hash: 3.0.0
       rss-parser: 3.12.0
@@ -12854,6 +12856,15 @@ packages:
       mime-db: 1.52.0
     dev: false
 
+  /compromise/14.8.1:
+    resolution: {integrity: sha512-RQmYyq4PsxMm5rPtVffKEXAy3AfUKXFOYjcvh3620haBo1kfLvP6cdsOBt9BIh/BVO6B8XF2A+smd4Bzz1H2oA==}
+    engines: {node: '>=12.0.0'}
+    dependencies:
+      efrt: 2.7.0
+      grad-school: 0.0.5
+      suffix-thumb: 4.0.2
+    dev: false
+
   /compute-gcd/1.2.1:
     resolution: {integrity: sha512-TwMbxBNz0l71+8Sc4czv13h4kEqnchV9igQZBi6QUaz09dnz13juGnnaWWJTRsP3brxOoxeB4SA2WELLw1hCtg==}
     dependencies:
@@ -13687,6 +13698,11 @@ packages:
 
   /ee-first/1.1.1:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
+    dev: false
+
+  /efrt/2.7.0:
+    resolution: {integrity: sha512-/RInbCy1d4P6Zdfa+TMVsf/ufZVotat5hCw3QXmWtjU+3pFEOvOQ7ibo3aIxyCJw2leIeAMjmPj+1SLJiCpdrQ==}
+    engines: {node: '>=12.0.0'}
     dev: false
 
   /electron-to-chromium/1.4.194:
@@ -15363,6 +15379,11 @@ packages:
 
   /graceful-fs/4.2.10:
     resolution: {integrity: sha512-9ByhssR2fPVsNZj478qUUbKfmL0+t5BDVyjShtyZZLiK7ZDAArFFfopyOTj0M05wE2tJPisA4iTnnXl2YoPvOA==}
+
+  /grad-school/0.0.5:
+    resolution: {integrity: sha512-rXunEHF9M9EkMydTBux7+IryYXEZinRk6g8OBOGDBzo/qWJjhTxy86i5q7lQYpCLHN8Sqv1XX3OIOc7ka2gtvQ==}
+    engines: {node: '>=8.0.0'}
+    dev: false
 
   /grapheme-splitter/1.0.4:
     resolution: {integrity: sha512-bzh50DW9kTPM00T8y4o8vQg89Di9oLJVLW/KaOGIXJWP/iqCN6WKYkbNOF04vFLJhwcpYUh9ydh/+5vpOqV4YQ==}
@@ -21695,6 +21716,10 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /suffix-thumb/4.0.2:
+    resolution: {integrity: sha512-CCvCAr7JyeQoO+/lyq3P2foZI/xJz5kpG3L6kg2CaOf9K2/gaM9ixy/JTuRwjEK38l306zE7vl3JoOZYmLQLlA==}
+    dev: false
 
   /superagent-proxy/3.0.0_superagent@7.1.5:
     resolution: {integrity: sha512-wAlRInOeDFyd9pyonrkJspdRAxdLrcsZ6aSnS+8+nu4x1aXbz6FWSTT9M6Ibze+eG60szlL7JA8wEIV7bPWuyQ==}

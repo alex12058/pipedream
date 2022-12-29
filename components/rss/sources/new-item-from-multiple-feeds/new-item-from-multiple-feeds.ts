@@ -1,6 +1,7 @@
 import rss from "../../app/rss.app";
 import { defineSource } from "@pipedream/types";
 import rssCommon from "../common/common";
+import nlp from "compromise";
 
 export default defineSource({
   ...rssCommon,
@@ -25,6 +26,11 @@ export default defineSource({
       optional: true,
       default: 20,
     },
+    keywords: {
+      type: "string[]",
+      label: "Keywords",
+      description: "Filters the RSS feed to only include items with a title, description or category matching a keyword",
+    },
   },
   dedupe: "unique",
   hooks: {
@@ -38,11 +44,36 @@ export default defineSource({
   },
   async run() {
     const items = [];
-    for (const url of this.urls) {
-      const feedItems = (await this.rss.fetchAndParseFeed(url))?.slice(0, this.max);
-      console.log(`Retrieved items from ${url}`);
+    // Get the feeds asynchronously
+    const feeds = await Promise.all(
+      this.urls.map((url) => this.rss.fetchAndParseFeed(url))
+    );
+    feeds.forEach((feedItems, i) => {
+      feedItems = feedItems?.slice(0, this.max);
+      console.log(`Retrieved items from ${this.urls[i]}`);
+      if (this.keywords) {
+        feedItems = feedItems
+          .map((item) => {
+            // Extract the description and title from the event
+            const { title, description, categories } = item;
+
+            // Use the compromise library to process the title, description and categories
+            const doc = nlp(
+              `${title}\n\n${description}\n\ntags: ${categories.join(", ")}.`
+            );
+
+            // Add the matched keywords to the RSS feed item
+            item.matched_keywords = this.keywords.filter((keyword) =>
+              doc.has(keyword)
+            );
+
+            return item;
+          })
+          .filter((item) => item.matched_keywords.length);
+        console.log(`${feedItems.length} items matched keywords`);
+      }
       items.push(...feedItems);
-    }
+    });
     this.rss.sortItems(items).forEach((item: any) => {
       const meta = this.generateMeta(item);
       this.$emit(item, meta);
